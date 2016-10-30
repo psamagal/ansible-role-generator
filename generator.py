@@ -39,11 +39,11 @@ env = Environment(loader=FileSystemLoader('templates'))
 
 
 output = env.get_template('README.md.j2').render()
-with open("{0}/README.md".format(args.role), "wb") as fh:
+with open("{0}/{1}/README.md".format(args.path, args.role), "wb") as fh:
     fh.write(output)
 
 for template in templates:
     output = env.get_template(template).render()
     # to save the results
-    with open("{0}/{1}/main.yaml".format(args.role,template[:-3]), "wb") as fh:
+    with open("{0}/{1}/{2}/main.yaml".format(args.path,args.role,template[:-3]), "wb") as fh:
         fh.write(output)
